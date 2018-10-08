@@ -2,6 +2,7 @@ import boto3
 import image_helpers
 import os
 import argparse
+import json
 
 if __name__ == "__main__":
 
@@ -26,7 +27,7 @@ if __name__ == "__main__":
     folder = args.directory
 
     filenames = os.listdir(folder)
-    print(filenames[0])
+    print(filenames)
 
     list_imgbytes = []
     for filename in filenames:
@@ -41,6 +42,9 @@ if __name__ == "__main__":
     for response in list_response:
         list_textDetections.append(response['TextDetections'])
         print(response)
+        with open('data.json', 'wt') as outfile:
+            json.dump(response, outfile, sort_keys = True, indent = 4,
+               ensure_ascii = False)
 
     print('Matching')
     for textDetections in list_textDetections:
