@@ -55,6 +55,10 @@ if __name__ == "__main__":
         with open('data.csv', 'a') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=',')
             spamwriter.writerow([datetime.date.today(), '1', '1'])
+        # Sorry, the time was not enough for me, today I presented the ECAES test
+        # :(
+        # This may be a solution that I have already worked
+        # https://github.com/jbeltranleon/contacts-directory/blob/master/contacts.py
     else:
         with open('data.csv', 'a') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=',')
@@ -75,4 +79,4 @@ if __name__ == "__main__":
                 print('\n')
 
 
-    print('Correct format path example: /home/jf/Downloads/invoice-test ')
+    print('Correct format path example: /home/jf/Downloads/invoice-test')

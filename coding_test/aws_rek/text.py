@@ -26,7 +26,7 @@ if __name__ == "__main__":
     parser.add_argument('directory', type=str, help='A folder path')
 
     args = parser.parse_args()
-    folder = args.directory + '/'
+    folder = args.directory + '/y'
 
     filenames = os.listdir(folder)
     print(filenames)
