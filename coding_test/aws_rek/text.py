@@ -38,13 +38,20 @@ if __name__ == "__main__":
     for imgbytes in list_imgbytes:
         list_response.append(client.detect_text(Image={'Bytes': imgbytes}))
 
+    #Json file
+    # with open('data.json', mode='w', encoding='utf-8') as f:
+    #     json.dump([], f)
+
     list_textDetections=[]
     for response in list_response:
         list_textDetections.append(response['TextDetections'])
         print(response)
-        with open('data.json', 'wt') as outfile:
+        with open('data.json', 'a') as outfile:
             json.dump(response, outfile, sort_keys = True, indent = 4,
                ensure_ascii = False)
+        # with open('data.json', mode='w', encoding='utf-8') as feedsjson:
+        #     feeds.append(response)
+        #     json.dump(feeds, feedsjson)
 
     print('Matching')
     for textDetections in list_textDetections:
