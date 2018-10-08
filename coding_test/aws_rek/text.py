@@ -4,6 +4,7 @@ import os
 import argparse
 import json
 import csv
+import datetime
 
 if __name__ == "__main__":
 
@@ -49,12 +50,16 @@ if __name__ == "__main__":
             json.dump(response, outfile, sort_keys = True, indent = 4,
                ensure_ascii = False)
 
-    #Csv file 
-    with open('data.csv', 'a') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=' ',
-                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
-        spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+    #Csv file
+    if os.path.exists('./data.csv') :
+        with open('data.csv', 'a') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=',')
+            spamwriter.writerow([datetime.date.today(), '1', '1'])
+    else:
+        with open('data.csv', 'a') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=',')
+            spamwriter.writerow(['Date', 'Invoice Number', 'Total Amount'])
+            spamwriter.writerow([datetime.date.today(), '1', '1'])
 
     print('Matching')
     for textDetections in list_textDetections:
