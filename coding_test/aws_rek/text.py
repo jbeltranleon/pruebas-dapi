@@ -16,6 +16,7 @@ if __name__ == "__main__":
 
     #imgurl = 'https://australianfintech.com.au/wp-content/uploads/2018/05/Advice.jpeg'
     #imgurl = 'https://i.imgur.com/1FwHQja.png'
+    #imgbytes = image_helpers.get_image_from_url(imgurl)
     #filename = '/home/jf/Downloads/invoice-test/invoice4.png'
 
     parser = argparse.ArgumentParser(description='Recive a Path of a Folder')
@@ -25,20 +26,37 @@ if __name__ == "__main__":
     folder = args.directory
 
     filenames = os.listdir(folder)
-    #imgbytes = image_helpers.get_image_from_url(imgurl)
-    imgbytes = image_helpers.get_image_from_file(folder + filenames[3])
+    print(filenames[0])
+
+    for filename in filenames:
+        list_imgbytes = []
+        list_imgbytes.append(image_helpers.get_image_from_file(folder + filename))
+    print('111111111111')
+    print(len(list_imgbytes))
 
     #response=client.detect_text(Image={'S3Object':{'Bucket':bucket,'Name':photo}})
-    response=client.detect_text(Image={'Bytes': imgbytes})
+    for imgbytes in list_imgbytes:
+        list_response = []
+        list_response.append(client.detect_text(Image={'Bytes': imgbytes}))
 
-    textDetections=response['TextDetections']
-    print(response)
-    print('Matching faces')
-    for text in textDetections:
-            print('Detected text:' + text['DetectedText'])
-            print('Confidence: ' + "{:.2f}".format(text['Confidence']) + "%")
-            print('Id: {}'.format(text['Id']))
-            if 'ParentId' in text:
-                print('Parent Id: {}'.format(text['ParentId']))
-            print('Type:' + text['Type'])
-            print('\n')
+
+    for response in list_response:
+        list_textDetections=[]
+        list_textDetections.append(response['TextDetections'])
+        print(response)
+
+    print('Matching')
+    for textDetections in list_textDetections:
+        print('***********************************************')
+        print('***********************************************')
+        for text in textDetections:
+                print('Detected text:' + text['DetectedText'])
+                print('Confidence: ' + "{:.2f}".format(text['Confidence']) + "%")
+                print('Id: {}'.format(text['Id']))
+                if 'ParentId' in text:
+                    print('Parent Id: {}'.format(text['ParentId']))
+                print('Type:' + text['Type'])
+                print('\n')
+
+
+    print('Correct format path example: /home/jf/Downloads/invoice-test/ ')
