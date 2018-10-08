@@ -52,14 +52,14 @@ if __name__ == "__main__":
 
     #Csv file
     if os.path.exists('./data.csv') :
-        with open('data.csv', 'a') as csvfile:
-            spamwriter = csv.writer(csvfile, delimiter=',')
-            spamwriter.writerow([datetime.date.today(), '1', '1'])
+        # with open('data.csv', 'a') as csvfile:
+        #     spamwriter = csv.writer(csvfile, delimiter=',')
+        #     spamwriter.writerow([datetime.date.today(), '1', '1'])
     else:
         with open('data.csv', 'a') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=',')
             spamwriter.writerow(['Date', 'Invoice Number', 'Total Amount'])
-            spamwriter.writerow([datetime.date.today(), '1', '1'])
+            spamwriter.writerow([datetime.date.today(), 1, 1])
 
     print('Matching')
     for textDetections in list_textDetections:
