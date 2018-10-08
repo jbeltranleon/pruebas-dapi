@@ -1,5 +1,7 @@
 import boto3
 import image_helpers
+import os
+import argparse
 
 if __name__ == "__main__":
 
@@ -12,10 +14,19 @@ if __name__ == "__main__":
         region_name='us-east-1')
 
 
-    imgurl = 'https://australianfintech.com.au/wp-content/uploads/2018/05/Advice.jpeg'
+    #imgurl = 'https://australianfintech.com.au/wp-content/uploads/2018/05/Advice.jpeg'
+    #imgurl = 'https://i.imgur.com/1FwHQja.png'
+    #filename = '/home/jf/Downloads/invoice-test/invoice4.png'
 
-    # grab the image from online
-    imgbytes = image_helpers.get_image_from_url(imgurl)
+    parser = argparse.ArgumentParser(description='Recive a Path of a Folder')
+    parser.add_argument('directory', type=str, help='A folder path')
+
+    args = parser.parse_args()
+    folder = args.directory
+
+    filenames = os.listdir(folder)
+    #imgbytes = image_helpers.get_image_from_url(imgurl)
+    imgbytes = image_helpers.get_image_from_file(folder + filenames[3])
 
     #response=client.detect_text(Image={'S3Object':{'Bucket':bucket,'Name':photo}})
     response=client.detect_text(Image={'Bytes': imgbytes})
