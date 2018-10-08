@@ -26,7 +26,7 @@ if __name__ == "__main__":
     parser.add_argument('directory', type=str, help='A folder path')
 
     args = parser.parse_args()
-    folder = args.directory
+    folder = args.directory + '/'
 
     filenames = os.listdir(folder)
     print(filenames)
@@ -75,4 +75,4 @@ if __name__ == "__main__":
                 print('\n')
 
 
-    print('Correct format path example: /home/jf/Downloads/invoice-test/ ')
+    print('Correct format path example: /home/jf/Downloads/invoice-test ')
