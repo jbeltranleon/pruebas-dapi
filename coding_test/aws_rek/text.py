@@ -52,9 +52,9 @@ if __name__ == "__main__":
 
     #Csv file
     if os.path.exists('./data.csv') :
-        # with open('data.csv', 'a') as csvfile:
-        #     spamwriter = csv.writer(csvfile, delimiter=',')
-        #     spamwriter.writerow([datetime.date.today(), '1', '1'])
+        with open('data.csv', 'a') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=',')
+            spamwriter.writerow([datetime.date.today(), '1', '1'])
     else:
         with open('data.csv', 'a') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=',')
