@@ -28,20 +28,17 @@ if __name__ == "__main__":
     filenames = os.listdir(folder)
     print(filenames[0])
 
+    list_imgbytes = []
     for filename in filenames:
-        list_imgbytes = []
         list_imgbytes.append(image_helpers.get_image_from_file(folder + filename))
-    print('111111111111')
-    print(len(list_imgbytes))
 
     #response=client.detect_text(Image={'S3Object':{'Bucket':bucket,'Name':photo}})
+    list_response = []
     for imgbytes in list_imgbytes:
-        list_response = []
         list_response.append(client.detect_text(Image={'Bytes': imgbytes}))
 
-
+    list_textDetections=[]
     for response in list_response:
-        list_textDetections=[]
         list_textDetections.append(response['TextDetections'])
         print(response)
 
