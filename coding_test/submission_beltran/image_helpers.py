@@ -1,3 +1,4 @@
+# @jbeltranleon - Jhon Fredy Beltrán León
 import requests
 
 def get_image_from_url(imgurl):
@@ -6,13 +7,6 @@ def get_image_from_url(imgurl):
     return imgbytes
 
 def get_image_from_file(filename):
-    '''Based on
-       https://docs.aws.amazon.com/rekognition/latest/dg/example4.html,
-       last access 10/3/2017'''
-    with open(filename, 'rb') as imgfile:
-        return imgfile.read()
-
-def get_image_from_folder(filename):
     '''Based on
        https://docs.aws.amazon.com/rekognition/latest/dg/example4.html,
        last access 10/3/2017'''

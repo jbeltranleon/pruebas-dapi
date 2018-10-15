@@ -1,3 +1,4 @@
+# @jbeltranleon - Jhon Fredy Beltrán León
 import boto3
 import image_helpers
 import os
